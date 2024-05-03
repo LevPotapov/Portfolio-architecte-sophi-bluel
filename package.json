@@ -1,0 +1,20 @@
+{
+  "name": "portfolio-architecte-sophie-bluel",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "website of architect Sofia Bluel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LevPotapov/Portfolio-architecte-sophi-bluel.git"
+  },
+  "author": "POTAPOV Lev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LevPotapov/Portfolio-architecte-sophi-bluel/issues"
+  },
+  "homepage": "https://github.com/LevPotapov/Portfolio-architecte-sophi-bluel#readme"
+}
