@@ -28,57 +28,59 @@ const showAllProjects = () => {
 showAllProjects();
 
 //Creating an area with filters
-gallery.insertAdjacentHTML("beforebegin", "<div></div>");
-const filters = document.querySelector("#portfolio h2+div");
-filters.id = "filters";
-const button = document.createElement("button");
-button.innerText = "Tous";
-button.className = "button";
-button.dataset.id = "Tous";
-filters.appendChild(button);
-
-for (let i = 0; i < categories.length; i++) {
+if (!localStorage.authorizationSB) {
+  gallery.insertAdjacentHTML("beforebegin", "<div></div>");
+  const filters = document.querySelector("#portfolio h2+div");
+  filters.id = "filters";
   const button = document.createElement("button");
-  let buttonClass = categories[i].name;
-  buttonClass = buttonClass.replace(/ /g, "-");
-  button.innerText = `${categories[i].name}`;
+  button.innerText = "Tous";
   button.className = "button";
-  button.dataset.id = buttonClass;
+  button.dataset.id = "Tous";
   filters.appendChild(button);
-}
 
-//Setting filters
-const figures = document.querySelectorAll(".Tous");
-const buttons = document.querySelectorAll(".button");
-filters.style.cssText = `
+  for (let i = 0; i < categories.length; i++) {
+    const button = document.createElement("button");
+    let buttonClass = categories[i].name;
+    buttonClass = buttonClass.replace(/ /g, "-");
+    button.innerText = `${categories[i].name}`;
+    button.className = "button";
+    button.dataset.id = buttonClass;
+    filters.appendChild(button);
+  }
+
+  //Setting filters
+  const figures = document.querySelectorAll(".Tous");
+  const buttons = document.querySelectorAll(".button");
+  filters.style.cssText = `
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-bottom: 30px; 
 `;
 
-buttons.forEach((element, index) => {
-  if (index !== 0) {
-    deactivateButton(element);
-  } else {
-    activateButton(element);
-  }
-});
-
-filters.addEventListener("click", (event) => {
-  if (event.target.classList.contains("button")) {
-    const targetButton = event.target.dataset.id;
-    buttons.forEach((element) => {
+  buttons.forEach((element, index) => {
+    if (index !== 0) {
       deactivateButton(element);
-    });
-    activateButton(event.target);
+    } else {
+      activateButton(element);
+    }
+  });
 
-    figures.forEach((element) => {
-      if (element.classList.contains(targetButton)) {
-        element.style.display = "block";
-      } else {
-        element.style.display = "none";
-      }
-    });
-  }
-});
+  filters.addEventListener("click", (event) => {
+    if (event.target.classList.contains("button")) {
+      const targetButton = event.target.dataset.id;
+      buttons.forEach((element) => {
+        deactivateButton(element);
+      });
+      activateButton(event.target);
+
+      figures.forEach((element) => {
+        if (element.classList.contains(targetButton)) {
+          element.style.display = "block";
+        } else {
+          element.style.display = "none";
+        }
+      });
+    }
+  });
+}

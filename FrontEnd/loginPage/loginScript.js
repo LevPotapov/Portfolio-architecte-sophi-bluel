@@ -47,10 +47,10 @@ form.addEventListener("submit", async (event) => {
     let response = await postData(host + "users/login", user);
     if (response.ok) {
       let result = await response.json();
-      sessionStorage.setItem("authorization", JSON.stringify(result));
+      localStorage.setItem("authorizationSB", JSON.stringify(result));
       window.location.href = "../index.html";
     } else {
-      errorMessage.innerText = "login ou mot de passe ne sont pas correctes";
+      errorMessage.innerText = "Erreur dans l’identifiant ou le mot de passe";
       setTimeout(() => (errorMessage.innerText = ""), 3500);
     }
   } else {
