@@ -2,8 +2,8 @@
 import { host, getData, activateButton, deactivateButton } from "./config.js";
 
 //Formation and processing of a request for archaeological projects and their categories
-const projects = await getData(host + "/works");
-const categories = await getData(host + "/categories");
+const projects = await getData(host + "works");
+const categories = await getData(host + "categories");
 
 //Creating an area with the architect's work
 const gallery = document.querySelector(".gallery");

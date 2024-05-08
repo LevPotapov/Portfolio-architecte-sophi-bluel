@@ -1,0 +1,162 @@
+body {
+  font-family: "Work Sans";
+  font-size: 14px;
+  margin: 0;
+}
+
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: #b1663c;
+}
+
+.content-body {
+  margin: 0;
+  width: 100%;
+  background-color: #fffef8;
+  border-top: 1px solid #fffef8;
+  padding-bottom: 365px;
+}
+
+header,
+main {
+  max-width: 1440px;
+  margin: auto;
+}
+
+/*Header*/
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 33px;
+}
+
+h1 {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  font-family: "Syne";
+  font-size: 22px;
+  font-weight: 800;
+  color: #b1663c;
+  margin-left: 150px;
+}
+
+header nav {
+  width: 50%;
+}
+
+h1 > span {
+  font-family: "Work Sans";
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+  margin-top: 5px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+  justify-content: flex-end;
+  align-items: start;
+  margin-right: 150px;
+  margin-top: 15px;
+}
+
+nav li {
+  font-size: 1.2em;
+}
+
+li img {
+  width: 1.2em;
+}
+
+/*Section*/
+section > * {
+  margin: auto;
+  width: 50%;
+}
+
+h2 {
+  margin-top: 136px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  font-family: "Syne";
+  color: #1d6154;
+}
+
+form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin: auto;
+  height: 50px;
+  width: 380px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin-top: 8px;
+}
+
+label {
+  width: 380px;
+  margin: auto;
+  margin-top: 8px;
+}
+
+label[for="name"] {
+  margin-top: 30px;
+}
+
+button {
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 30px auto;
+  width: 180px;
+  text-align: center;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+button:hover {
+  background-color: #0e2f28;
+}
+
+p {
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  text-decoration: 1px solid underline;
+  cursor: pointer;
+}
+
+p a:hover {
+  color: black;
+}
+
+/*Footer*/
+
+footer {
+  height: 2em;
+}
+
+footer nav ul {
+  margin-right: 105px;
+  font-size: 11px;
+}

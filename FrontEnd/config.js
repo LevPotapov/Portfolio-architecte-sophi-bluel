@@ -1,5 +1,5 @@
 //Host settings
-const host = "http://localhost:5678/api";
+const host = "http://localhost:5678/api/";
 
 //Data acquisition function
 const getData = (url) =>
@@ -9,6 +9,19 @@ const getData = (url) =>
       .then((json) => resolve(json))
       .catch((error) => reject(error))
   );
+
+// Data POST function
+const postData = (url, options) => {
+  if (typeof options === "string") {
+    return fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: options,
+    });
+  }
+};
 
 //Functions for activating and deactivating buttons
 const activateButton = (target) => {
@@ -40,4 +53,4 @@ const deactivateButton = (target) => {
 };
 
 //Exporting the configuration
-export { host, getData, activateButton, deactivateButton };
+export { host, getData, postData, activateButton, deactivateButton };
