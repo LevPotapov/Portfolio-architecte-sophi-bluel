@@ -21,6 +21,15 @@ const postData = (url, options) => {
       body: options,
     });
   }
+
+  const token = JSON.parse(localStorage.getItem("authorizationSB")).token;
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: new FormData(options),
+  });
 };
 
 // Data DELETE function

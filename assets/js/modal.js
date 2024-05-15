@@ -2,6 +2,46 @@
 import { showAllProjects } from "./filters.js";
 import { deleteData, host, getData } from "./config.js";
 
+//Filling the gallery in the modal window with existing projects
+const showAllProjectsInModalWindow = async () => {
+  let projects = await getData(host + "works");
+
+  const modalPortfolio = document.querySelector(".modalPortfolio");
+  modalPortfolio.innerHTML = "";
+  for (let i = 0; i < projects.length; i++) {
+    const modalFigure = document.createElement("figure");
+
+    const modalPhoto = document.createElement("img");
+    modalPhoto.src = projects[i].imageUrl;
+    modalPhoto.alt = projects[i].title;
+    modalPhoto.classList.add("modalPhoto");
+
+    modalFigure.appendChild(modalPhoto);
+    modalFigure.style.position = "relative";
+
+    const btnRemove = document.createElement("button");
+    btnRemove.classList.add("btnRemove");
+
+    const imgRemove = document.createElement("img");
+    imgRemove.src = "./assets/icons/remove.png";
+    btnRemove.appendChild(imgRemove);
+
+    btnRemove.id = projects[i].id;
+    modalFigure.appendChild(btnRemove);
+    modalPortfolio.appendChild(modalFigure);
+
+    btnRemove.addEventListener("click", async (event) => {
+      event.preventDefault();
+      let response = await deleteData(host + `works/${btnRemove.id}`);
+      if (response.ok) {
+        projects = projects.filter((element) => element.id !== btnRemove.id);
+        showAllProjects();
+        showAllProjectsInModalWindow();
+      }
+    });
+  }
+};
+
 const modalWindowFunction = () => {
   if (!localStorage.hasOwnProperty("authorizationSB")) {
     return;
@@ -24,20 +64,20 @@ const modalWindowFunction = () => {
   btnModifier.addEventListener("click", (event) => {
     event.preventDefault();
     modal.style.display = "flex";
-    modal.ariaHidden = "false";
-    modal.ariaModal = "true";
+    modal.ariaHidden = false;
+    modal.ariaModal = true;
   });
 
   modal.addEventListener("click", () => {
-    modal.ariaHidden = "true";
-    modal.ariaModal = "false";
+    modal.ariaHidden = true;
+    modal.ariaModal = false;
     modal.style.display = "none";
   });
 
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape" || event.key === "Esc") {
-      modal.ariaHidden = "true";
-      modal.ariaModal = "false";
+      modal.ariaHidden = true;
+      modal.ariaModal = false;
       modal.style.display = "none";
     }
   });
@@ -74,50 +114,12 @@ const modalWindowFunction = () => {
   modaleGallery.append(modalHeader, modalTitle, modalPortfolio, btnAjouter);
 
   buttonCross.addEventListener("click", () => {
-    modal.ariaHidden = "true";
-    modal.ariaModal = "false";
+    modal.ariaHidden = true;
+    modal.ariaModal = false;
     modal.style.display = "none";
   });
-
-  //Filling the gallery in the modal window with existing projects
-  const showAllProjectsInModalWindow = async () => {
-    let projects = await getData(host + "works");
-    modalPortfolio.innerHTML = "";
-    for (let i = 0; i < projects.length; i++) {
-      const modalFigure = document.createElement("figure");
-
-      const modalPhoto = document.createElement("img");
-      modalPhoto.src = projects[i].imageUrl;
-      modalPhoto.alt = projects[i].title;
-      modalPhoto.classList.add("modalPhoto");
-
-      modalFigure.appendChild(modalPhoto);
-      modalFigure.style.position = "relative";
-
-      const btnRemove = document.createElement("button");
-      btnRemove.classList.add("btnRemove");
-
-      const imgRemove = document.createElement("img");
-      imgRemove.src = "./assets/icons/remove.png";
-      btnRemove.appendChild(imgRemove);
-
-      btnRemove.id = projects[i].id;
-      modalFigure.appendChild(btnRemove);
-      modalPortfolio.appendChild(modalFigure);
-
-      btnRemove.addEventListener("click", async (event) => {
-        event.preventDefault();
-        let response = await deleteData(host + `works/${btnRemove.id}`);
-        if (response.ok) {
-          projects = projects.filter((element) => element.id !== btnRemove.id);
-          showAllProjects();
-          showAllProjectsInModalWindow();
-        }
-      });
-    }
-  };
 
   showAllProjectsInModalWindow();
 };
 
-export { modalWindowFunction };
+export { modalWindowFunction, showAllProjectsInModalWindow };
