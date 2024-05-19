@@ -1,9 +1,15 @@
+/** @module EditionMode */
+
+/**
+ * a function that adds items available to the authorized user
+ * @returns {undefined}
+ */
 const modeEditionFunction = () => {
   if (!localStorage.hasOwnProperty("authorizationSB")) {
     return;
   }
 
-  //Adding the "Mode edition" header
+  /**Adding the "Mode edition" header*/
   const content = document.querySelector(".content-body");
   content.insertAdjacentHTML(
     "beforebegin",
@@ -16,7 +22,7 @@ const modeEditionFunction = () => {
   modeEditionParagraph.innerText = "Mode édition";
   edition.append(whitePen, modeEditionParagraph);
 
-  //Logout button
+  /**Logout button*/
   const logout = document.querySelector('[href="./login.html"]');
   logout.innerText = "logout";
   logout.href = "";
@@ -25,7 +31,7 @@ const modeEditionFunction = () => {
     window.location.href = "./index.html";
   });
 
-  //Adding a modification button
+  /**Adding a modification button*/
   const projectTitle = document.querySelector("#portfolio > h2");
   projectTitle.classList.add("projectTitle");
 

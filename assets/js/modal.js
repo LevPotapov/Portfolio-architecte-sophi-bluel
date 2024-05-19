@@ -1,8 +1,12 @@
-//Importing
-import { showAllProjects } from "./filters.js";
-import { deleteData, host, getData } from "./config.js";
+/** @module Modal */
 
-//Filling the gallery in the modal window with existing projects
+import { showAllProjects } from "./filters.js";
+import { apiCall, host, getData } from "./config.js";
+
+/**
+ * the function of filling the gallery in the modal window with existing projects
+ * @returns {undefined}
+ */
 const showAllProjectsInModalWindow = async () => {
   let projects = await getData(host + "works");
 
@@ -32,7 +36,7 @@ const showAllProjectsInModalWindow = async () => {
 
     btnRemove.addEventListener("click", async (event) => {
       event.preventDefault();
-      let response = await deleteData(host + `works/${btnRemove.id}`);
+      let response = await apiCall(host + `works/${btnRemove.id}`, "DELETE");
       if (response.ok) {
         projects = projects.filter((element) => element.id !== btnRemove.id);
         showAllProjects();
@@ -42,12 +46,18 @@ const showAllProjectsInModalWindow = async () => {
   }
 };
 
+/**
+ * the function of creating the first page of the modal window
+ * @returns {undefined}
+ */
 const modalWindowFunction = () => {
   if (!localStorage.hasOwnProperty("authorizationSB")) {
     return;
   }
 
-  //Creating a modal window
+  /**
+   * Creating a modal window
+   */
   const body = document.querySelector("body");
   const modal = document.createElement("aside");
   modal.classList.add("modal");
@@ -59,7 +69,9 @@ const modalWindowFunction = () => {
   modal.appendChild(modaleGallery);
   body.appendChild(modal);
 
-  //Conditions for showing and hiding a modal window
+  /**
+   * Conditions for showing and hiding a modal window
+   */
   const btnModifier = document.querySelector("#portfolio a");
   btnModifier.addEventListener("click", (event) => {
     event.preventDefault();
@@ -86,8 +98,9 @@ const modalWindowFunction = () => {
     event.stopPropagation();
   });
 
-  //Gallery styling in a modal window
-
+  /**
+   * Gallery styling in a modal window
+   */
   const modalHeader = document.createElement("header");
   modalHeader.classList.add("modalHeader");
 
@@ -96,6 +109,13 @@ const modalWindowFunction = () => {
 
   const imgCross = document.createElement("img");
   imgCross.src = "./assets/icons/cross.png";
+
+  const buttonFleche = document.createElement("button");
+  buttonFleche.classList.add("buttonFleche");
+
+  const imgFleche = document.createElement("img");
+  imgFleche.classList.add("imgFleche");
+  imgFleche.src = "./assets/icons/fleche.png";
 
   const modalTitle = document.createElement("h3");
   modalTitle.classList.add("modalTitle");
@@ -109,7 +129,9 @@ const modalWindowFunction = () => {
   btnAjouter.innerText = "Ajouter une photo";
 
   buttonCross.appendChild(imgCross);
-  modalHeader.appendChild(buttonCross);
+  buttonFleche.appendChild(imgFleche);
+  buttonFleche.style.display = "none";
+  modalHeader.append(buttonFleche, buttonCross);
 
   modaleGallery.append(modalHeader, modalTitle, modalPortfolio, btnAjouter);
 

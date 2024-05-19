@@ -1,10 +1,13 @@
-//Importing a configuration file
+/** @module Filters */
+
 import { host, getData } from "./config.js";
 
-//Formation and processing of a request for categories
+/**Formation and processing of a request for categories*/
 const categories = await getData(host + "categories");
 
-//Creating an area with the architect's work
+/**
+ * Creating an area with the architect's work
+ */
 const showAllProjects = async () => {
   let projects = await getData(host + "works");
   const gallery = document.querySelector(".gallery");
@@ -27,9 +30,11 @@ const showAllProjects = async () => {
   }
 };
 
+/**
+ * Creating an area with filters
+ */
 const filtersFunction = () => {
   if (!localStorage.authorizationSB) {
-    //Creating an area with filters
     const gallery = document.querySelector(".gallery");
     gallery.insertAdjacentHTML("beforebegin", "<div></div>");
     const filters = document.querySelector("#portfolio h2+div");
@@ -51,7 +56,7 @@ const filtersFunction = () => {
       filters.appendChild(button);
     }
 
-    //Setting filters
+    /**Setting filters */
     const buttons = document.querySelectorAll(".button");
     filters.classList.add("filters");
 
@@ -84,5 +89,4 @@ const filtersFunction = () => {
   }
 };
 
-//Exporting
 export { showAllProjects, filtersFunction };

@@ -1,6 +1,6 @@
 {
   "name": "portfolio-architecte-sophie-bluel",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
   "description": "website of architect Sofia Bluel",
   "main": "index.js",
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/LevPotapov/Portfolio-architecte-sophi-bluel/issues"
   },
-  "homepage": "https://github.com/LevPotapov/Portfolio-architecte-sophi-bluel#readme"
+  "homepage": "https://github.com/LevPotapov/Portfolio-architecte-sophi-bluel#readme",
+  "devDependencies": {
+    "jsdoc": "^4.0.3"
+  }
 }

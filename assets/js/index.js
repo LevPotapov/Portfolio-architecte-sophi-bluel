@@ -1,7 +1,9 @@
+/**@module Index */
+
 import { showAllProjects, filtersFunction } from "./filters.js";
 import { modeEditionFunction } from "./editionMode.js";
 import { modalWindowFunction } from "./modal.js";
-import { functionAddingPhotos } from "./addingPhotos.js";
+import { modalAddPhotos } from "./modalAddPhotos.js";
 
 showAllProjects();
 
@@ -11,4 +13,4 @@ modeEditionFunction();
 
 modalWindowFunction();
 
-functionAddingPhotos();
+modalAddPhotos();

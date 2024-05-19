@@ -278,3 +278,8 @@ option {
   height: 12px;
   box-sizing: border-box;
 }
+
+.bigPreview {
+  width: 168px;
+  height: 100%;
+}
