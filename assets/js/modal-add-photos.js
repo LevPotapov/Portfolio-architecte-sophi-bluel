@@ -21,7 +21,6 @@ const modalAddPhotos = () => {
   const modalTitle = document.querySelector(".modalTitle");
   const modalBody = document.querySelector(".modalPortfolio");
   const modaleAdding = document.querySelector(".modaleGallery");
-  const buttonFleche = document.querySelector(".buttonFleche");
   modalTitle.insertAdjacentHTML(
     "beforebegin",
     "<p class = 'errorMessage' ></ p>"
